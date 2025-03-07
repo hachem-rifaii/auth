@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://auth-delta-two-84.vercel.app",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
