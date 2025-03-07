@@ -20,6 +20,7 @@ const DemoApp = () => {
   const [eventIdToDelete, setEventIdToDelete] = useState(null);
   const { user } = useAppContext();
   const [filter, setFilter] = useState({ color: "", title: "", date: "" });
+  const [filterVisible, setFilterVisible] = useState(false); // State to control filter visibility
 
   const handleClose = useCallback((e: any) => {
     if (e.target.id === "close") {
@@ -114,12 +115,24 @@ const DemoApp = () => {
   return (
     <div className="w-full h-full">
       <div className="flex w-full justify-start items-center flex-col gap-4">
-        <h1 className="text-3xl  ">Hiii {user?.name} 👋</h1>
-        <h1 className="text-2xl  text-blue-600 font-bold">Event Calendar</h1>
+        <h1 className="text-3xl">Hiii {user?.name} 👋</h1>
+        <h1 className="text-2xl text-blue-600 font-bold">Event Calendar</h1>
       </div>
-      <div className="relative p-5 w-full h-full flex">
+      <div className="relative p-5 w-full h-full flex flex-col md:flex-row">
+        {/* Toggle Button for Filter */}
+        <button
+          onClick={() => setFilterVisible(!filterVisible)}
+          className="md:hidden bg-blue-500 text-white p-2 rounded-lg mb-4"
+        >
+          Toggle Filter
+        </button>
+
         {/* Filter Panel */}
-        <div className="w-1/4 p-4 bg-white shadow-lg rounded-lg">
+        <div
+          className={`w-full md:w-1/4 p-4 bg-white shadow-lg rounded-lg transition-all ${
+            filterVisible ? "block" : "hidden"
+          } md:block`}
+        >
           <h2 className="text-lg font-bold mb-3">Filter Events</h2>
           <label className="block mb-2">Color</label>
           <select
@@ -151,7 +164,7 @@ const DemoApp = () => {
         </div>
 
         {/* Calendar Section */}
-        <div className="w-[70%] mx-auto bg-transparent p-3 rounded-lg shadow-2xl backdrop-blur-sm">
+        <div className="w-full md:w-[70%] mx-auto bg-transparent p-3 rounded-lg shadow-2xl backdrop-blur-sm">
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             initialView="dayGridMonth"
