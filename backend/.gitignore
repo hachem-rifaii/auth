@@ -1,0 +1,14 @@
+node_modules
+.env
+# .gitignore
+../3d/
+../DBMONGOELEARNING.txt
+../E-learning/
+../E-shop/.gitignore
+../Portfolio-v2-main/
+../accountPage.txt
+../carRentalDb.txt
+../ecco-back/
+../ecommerce-typescript/
+../protfolio/
+../turkish.txt
